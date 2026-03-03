@@ -1,0 +1,87 @@
+🔹 What is 2nd Level Cache?
+- 2nd level cache stores entity data across sessions
+- First session DB se data laata hai
+- Next session DB hit nahi karta, cache se data milta hai
+
+🔹Why Ehcache?
+- Fast in-memory cache
+- Production-ready
+- Hibernate officially supports it
+
+🔹Steps to Enable 2nd Level Cache with Ehcache
+1️⃣ Add Dependencies (Maven)
+<dependency>
+    <groupId>org.hibernate.orm</groupId>
+    <artifactId>hibernate-jcache</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.ehcache</groupId>
+    <artifactId>ehcache</artifactId>
+</dependency>
+
+2️⃣ Enable Cache in hibernate.cfg.xml
+<property name="hibernate.cache.use_second_level_cache">true</property>
+<property name="hibernate.cache.region.factory_class">
+    org.hibernate.cache.jcache.JCacheRegionFactory
+</property>
+<property name="hibernate.javax.cache.provider">
+    org.ehcache.jsr107.EhcacheCachingProvider
+</property>
+
+3️⃣ Add ehcache.xml (in resources)
+<config xmlns="http://www.ehcache.org/v3">
+    <cache alias="Laptop">
+        <heap unit="entries">1000</heap>
+        <expiry>
+            <ttl unit="minutes">10</ttl>
+        </expiry>
+    </cache>
+</config>
+
+4️⃣ Mark Entity as Cacheable
+@Entity
+@Cacheable
+@org.hibernate.annotations.Cache(
+    usage = CacheConcurrencyStrategy.READ_WRITE
+)
+public class Laptop {
+}
+
+🔹 How it Works (Flow)
+- Session-1 → DB hit → data cached
+- Session-2 → no DB hit → data from Ehcache
+- Cache expires → DB hit again
+
+🔹 Important Notes
+- Cache works only for read-heavy data
+- Cache invalidates automatically on update
+- Not useful for frequently changing data
+
+Create Laptop class and mark as @Cacheable (just copy previous file)
+In AlienForMain Class:
+    SessionFactory sf = new Configuration()
+                    .addAnnotatedClass(Laptop.class)
+                    .configure()
+                    .buildSessionFactory();
+
+    Session session = sf.openSession();
+
+    Laptop l1 =  session.find(Laptop.class,3);
+    System.out.println(l1);
+
+    session.close()
+
+    // New Session
+    Session session1 = sf.openSession();
+    Laptop l2 =  session1.find(Laptop.class,3);
+    System.out.println(l2);
+    session.close();
+
+    sf.close()
+
+
+
+
+
+

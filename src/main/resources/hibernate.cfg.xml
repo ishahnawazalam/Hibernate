@@ -1,0 +1,30 @@
+<!--3.-->
+
+<!--first import hibernate configuration tag-->
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+<!--    In the session-factory tag, we need to mention certain properties-->
+    <session-factory>
+        <!--        // DB settings -->
+<!--        which driver you are working with-->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+<!--        Give database URL,port number and db name-->
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hibernatedemo2</property>
+<!--        Username and Password-->
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">pgAdmin@MySQL9</property>
+
+<!--        // Hibernate settings -->
+<!--        We need to specify db dialect. For different DBMS, there is a different dialect-->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+<!--        - Hibernate create a table in DB. When you use 'none', it will not do anything, but when you use create , it will create a table for you
+            - But it creates table everytime,so use 'update'. So if there is a change in schema, it will update automatically -->
+<!--          For Student, HQl: Update-->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+<!--       <property name="hibernate.hbm2ddl.auto">create</property>-->
+<!--         Query show ho console mei-->
+        <property name="hibernate.show_sql">true</property>
+<!--        Formatted way mei agar query dekhna ho to-->
+<!--        <property name="hibernate.format_sql">true</property>-->
+
+    </session-factory>
+</hibernate-configuration>
