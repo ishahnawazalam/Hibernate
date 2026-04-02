@@ -101,8 +101,9 @@ public class MainForStudent {
 
  */
 
-// 5. Deleting. 'delete()' is depreciated. '.set()' ka sara method comment kar do. qk delete kar rhe, set nhi kar rhe
+// 5. Deleting. 'delete()' is depreciated. '.set()' (uppar wala) ka sara method comment kar do. qk delete kar rhe, set nhi kar rhe
 
+        Student s3 = null;
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(Student.class)
                 .configure()
@@ -111,10 +112,10 @@ public class MainForStudent {
         Session session = sf.openSession();
 
         // Suppose delete ankit from table
-        // first fetch then delete
-        s1 = session.find(Student.class,104);
+        // first fetch the object then delete it
+        s3 = session.find(Student.class,105);
         Transaction transaction = session.beginTransaction();
-        session.remove(s1);
+        session.remove(s3);
         transaction.commit();
 
         session.close();

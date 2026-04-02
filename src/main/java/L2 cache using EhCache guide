@@ -39,7 +39,7 @@
     </cache>
 </config>
 
-4️⃣ Mark Entity as Cacheable
+4️⃣ Mark Entity as Cacheable (Here Laptop class ko mark kar dena )
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(
@@ -58,8 +58,9 @@ public class Laptop {
 - Cache invalidates automatically on update
 - Not useful for frequently changing data
 
-Create Laptop class and mark as @Cacheable (just copy previous file)
+Create Laptop class and mark as @Cacheable (just copy previous file: Laptop, Main class)
 In AlienForMain Class:
+
     SessionFactory sf = new Configuration()
                     .addAnnotatedClass(Laptop.class)
                     .configure()

@@ -12,19 +12,19 @@ public class MainForAlien {
 
     public static void main(String[] args) {
         Laptop l1 = new Laptop();
-        l1.setLid(1);
+        l1.setLid(201);
         l1.setBrand("Asus");
         l1.setModel("Rog");
         l1.setRam("16");
 
         Laptop l2 = new Laptop();
-        l2.setLid(2);
+        l2.setLid(202);
         l2.setBrand("Dell");
         l2.setModel("XPS");
         l2.setRam("32");
 
         Alien a1 = new Alien();
-        a1.setAid(101);
+        a1.setAid(301);
         a1.setAname("Naveen");
         a1.setTech("Java");
         a1.setLaptops(Arrays.asList(l1,l2));
@@ -52,8 +52,8 @@ public class MainForAlien {
         transaction.commit();
 
         // Fetch the data
-        Alien a2 = session.find(Alien.class,101);
-        System.out.println(a2);
+//        Alien a2 = session.find(Alien.class,101);
+//        System.out.println(a2);
 
         session.close();
         sf.close();

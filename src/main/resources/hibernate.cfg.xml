@@ -2,6 +2,7 @@
 
 <!--first import hibernate configuration tag-->
 <hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+
 <!--    In the session-factory tag, we need to mention certain properties-->
     <session-factory>
         <!--        // DB settings -->
@@ -28,3 +29,5 @@
 
     </session-factory>
 </hibernate-configuration>
+
+<!-- name="hibernate.hbm2ddl.auto" :: Update krlena HQL,get(),load(), EhCache ke lecture ke case mei ke case mei baaki upto P-7 "create" kar skte ho-->

@@ -65,7 +65,7 @@ public class MainForAlien {
 
 
         Transaction transaction = session.beginTransaction();
-        // u also need to persist laptop also l1 ko phle kiye qk mujhe laptop_id as fk chahiye in Alien Table
+        // u also need to persist laptop also
         session.persist(l1);
         session.persist(l2);
         session.persist(l3);
@@ -76,8 +76,8 @@ public class MainForAlien {
         transaction.commit();
 
         // Fetch the data
-        Alien a5 = session.find(Alien.class,102);
-        System.out.println(a5);
+//        Alien a5 = session.find(Alien.class,102);
+//        System.out.println(a5);
 
         session.close();
         sf.close();

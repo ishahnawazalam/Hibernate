@@ -14,7 +14,8 @@ public class Alien {
     private int aid;
     private String aname;
     private String tech;
-    @OneToMany(fetch = FetchType.EAGER)
+//    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     private List<Laptop> laptops;
 
     public void setAid(int aid) {

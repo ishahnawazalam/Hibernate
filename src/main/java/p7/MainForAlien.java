@@ -53,7 +53,7 @@ public class MainForAlien {
 
 
         Transaction transaction = session.beginTransaction();
-        // u also need to persist laptop also l1 ko phle kiye qk mujhe laptop_id as fk chahiye in Alien Table
+        // u also need to persist laptop
         session.persist(l1);
         session.persist(l2);
         session.persist(l3);
@@ -63,13 +63,13 @@ public class MainForAlien {
 
         transaction.commit();
 
-        // Fetch the data
+//      Fetch the data : select query fire nhi hoga agar persist and fetch ek session mei kar rhe ho to
 //        Alien a5 = session.find(Alien.class,101);
 //        System.out.println(a5);
 
         session.close();
 
-        // new session bna rhe: qk select show nhi ho rha tha console mei even after fetching data using find method(caching concept)
+//        // new session bna rhe: qk select show nhi ho rha tha console mei even after fetching data using find method(caching concept)
         Session session1 = sf.openSession();
         Alien a5 = session1.find(Alien.class,101); // ye sirf Alien ka hee data dega (id,name,tech) no laptop data in select(It is lazy fetching by default hota hai-: Jab mangoge data tab hee milega) but when u uncomment the below line(i.e.,sout(a5) then it gives whole alien data including laptop data.Aur agar eager Fetch kar diye to uncommnet(sout(a5)) nhi bhi kroge to phir bhi Alien ka sara data including laptop data dega
 //        System.out.println(a5);

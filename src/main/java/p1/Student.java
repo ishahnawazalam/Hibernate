@@ -1,4 +1,6 @@
-package p1;//1.
+// 1.
+
+package p1;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
